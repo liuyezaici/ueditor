@@ -384,11 +384,9 @@
      * */
     getAndPushWinZIndex: function () {
         if(typeof window.zIndex == 'undefined') {
-            console.log('no set');
             window.zIndex = options.zIndex;
             return options.zIndex;
         } else {
-            console.log('has set');
             window.zIndex += 1;
             return window.zIndex;
         }
