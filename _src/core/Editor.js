@@ -382,7 +382,7 @@
      *  假如已经有其他插件占用了zIndex为1999120
      *  当前编辑器的实例化应该在这个zIndex之上，并且更新全局的window.zIndex
      * */
-    getAndPushWinZIndex: function () {
+    getAndAddWinZIndex: function () {
         if(typeof window.zIndex == 'undefined') {
             window.zIndex = options.zIndex;
             return options.zIndex;
@@ -442,7 +442,7 @@
               getStyleValue("padding-bottom") +
               "px";
 
-        container.style.zIndex = this.getAndPushWinZIndex();
+        container.style.zIndex = this.getAndAddWinZIndex();
 
         var html =
           (ie && browser.version < 9 ? "" : "<!DOCTYPE html>") +
