@@ -376,6 +376,24 @@
     },
 
     /**
+     *   配合其他插件 共享window.zIndex
+     *
+     *  获取当前浏览器的最高层级
+     *  假如已经有其他插件占用了zIndex为1999120
+     *  当前编辑器的实例化应该在这个zIndex之上，并且更新全局的window.zIndex
+     * */
+    getAndPushWinZIndex: function () {
+        if(typeof window.zIndex == 'undefined') {
+            console.log('no set');
+            window.zIndex = options.zIndex;
+            return options.zIndex;
+        } else {
+            console.log('has set');
+            window.zIndex += 1;
+            return window.zIndex;
+        }
+    },
+    /**
          * 渲染编辑器的DOM到指定容器
          * @method render
          * @param { String } containerId 指定一个容器ID
@@ -426,7 +444,7 @@
               getStyleValue("padding-bottom") +
               "px";
 
-        container.style.zIndex = options.zIndex;
+        container.style.zIndex = this.getAndPushWinZIndex();
 
         var html =
           (ie && browser.version < 9 ? "" : "<!DOCTYPE html>") +
